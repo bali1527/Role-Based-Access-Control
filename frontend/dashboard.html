@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAVIGATION BAR -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span class="brand-text">PDF Manager</span>
+  </div>
+  
+  <div class="navbar-user">
+    <div class="user-profile">
+      <div class="user-info">
+        <div id="dashboardUsername" class="username">—</div>
+        <div id="dashboardRole" class="user-role">—</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main-container">
+
+  <section id="uploadSection" class="upload-section card">
+    <h2 class="section-title">Upload New PDF</h2>
+    
+    <div class="upload-form">
+      <div class="form-group">
+        <label for="pdfTitle">PDF Title</label>
+        <input 
+          id="pdfTitle" 
+          type="text"
+          placeholder="Enter PDF title" 
+          class="form-control"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="pdfFile">Select PDF File</label>
+        <input 
+          id="pdfFile" 
+          type="file" 
+          accept="application/pdf" 
+          class="form-control"
+        />
+      </div>
+      
+      <button onclick="uploadPDF()" class="btn btn-primary">Upload PDF</button>
+      <div id="uploadMsg" class="upload-msg"></div>
+    </div>
+  </section>
+
+  <!-- PDF LIST SECTION -->
+  <section class="pdf-section card">
+    
+    <h2 class="section-title"> Available PDFs</h2>
+    
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <p>No PDFs available yet</p>
+    </div>
+
+    <div id="pdfGrid" class="pdf-grid"></div>
+  </section>
+
+</main>
+  <!-- USER MANAGEMENT SECTION (super_admin only) -->
+  <section id="userManagementSection" style="display: none;" class="user-management-section card">
+    <h2 class="title">Role Management</h2>
+    <div id="usersTableContainer" class="users-table-container">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Current Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+<script src="app.js"></script>
+</body>
+</html>
