@@ -86,8 +86,8 @@ RBAC/
 │   ├── index.html            # Login page
 │   ├── dashboard.html        # Dashboard
 │   ├── app.js                # Frontend JavaScript
-│   ├── style.css             # Modern styling
-│   └── rbac.db               # SQLite database
+│   └── style.css             # Modern styling
+│
 │
 ├── uploads/
 │   └── pdfs/                 # PDF storage directory
