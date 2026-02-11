@@ -393,8 +393,12 @@ async function loadUsersList() {
   users.forEach(user => {
     const userRoles = user.roles || [];
     const currentRole = userRoles.length > 0 ? userRoles[0] : "user";
-    
+    const isSuperUser = userRoles.includes("super_admin");
+
     const row = document.createElement("tr");
+
+    const deleteButtonHtml = isSuperUser ? "" : `<button class="btn-remove-user" onclick="handleDeleteUser(${user.id}, '${escapeHtml(user.username)}')">🗑️ Delete User</button>`;
+
     row.innerHTML = `
       <td>${escapeHtml(user.username)}</td>
       <td>${escapeHtml(user.email)}</td>
@@ -407,12 +411,8 @@ async function loadUsersList() {
       </td>
       <td>
         <div class="user-actions">
-          <button class="btn-change-role" onclick="handleRoleChange(${user.id}, document.getElementById('roleSelect_${user.id}').value)">
-            ✓ Update Role
-          </button>
-          <button class="btn-remove-user" onclick="handleDeleteUser(${user.id}, '${escapeHtml(user.username)}')">
-            🗑️ Delete User
-          </button>
+          <button class="btn-change-role" onclick="handleRoleChange(${user.id}, document.getElementById('roleSelect_${user.id}').value)">✓ Update Role</button>
+          ${deleteButtonHtml}
         </div>
       </td>
     `;
